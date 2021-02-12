@@ -95,11 +95,15 @@
               "artifactTags": {
                 "source": "azVmImageBuilder",
                 "baseosimg": "windows10Multi"
-              }
+              },
+              "replicationRegions": [
+                      "northeurope"
+                    ]
             }
           ]
         }
       }
     ]
   }
+  
   
