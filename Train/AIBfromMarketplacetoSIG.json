@@ -57,8 +57,8 @@
           ],
           "distribute": [
             {
-              "type": "ManagedImage",
-              "imageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>",
+              "type": "SharedImage",
+              "galleryimageId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Compute/galleries/<sharedImageGalleryName>/images/<imageGalleryName>",
               "location": "<region>",
               "runOutputName": "<runOutputName>",
               "artifactTags": {
