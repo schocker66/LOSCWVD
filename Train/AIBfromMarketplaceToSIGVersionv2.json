@@ -27,7 +27,7 @@
         "identity": {
           "type": "UserAssigned",
           "userAssignedIdentities": {
-            "<imgBuilderId>": {}
+            "/subscriptions/bfdcbedf-2c60-4db1-a2a7-e84555bd0af1/resourcegroups/AIBWin10/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aibIdentity": {}
           }
         },
         "properties": {
@@ -109,16 +109,30 @@
                     },
                     {
                         "type": "WindowsRestart",
-                        "restartCheckCommand": "echo Azure-Image-Builder-Restarted-the-VM  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
+                        "restartCheckCommand": "echo Windows-App-Install-Restart  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
+                        "restartTimeout": "5m"
+                    },
+                     {
+                        "type": "WindowsUpdate",
+                        "searchCriteria": "IsInstalled=0",
+                        "filters": [
+                            "exclude:$_.Title -like '*Preview*'",
+                            "include:$true"
+                        ],
+                        "updateLimit": 200
+                    },
+                    {
+                        "type": "WindowsRestart",
+                        "restartCheckCommand": "echo Windows-Update-Restart  > c:\\buildArtifacts\\azureImageBuilderRestart.txt",
                         "restartTimeout": "5m"
                     }
           ],
           "distribute": [
             {
               "type": "SharedImage",
-              "galleryimageId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Compute/galleries/<sharedImageGalleryName>/images/<imageDefName>",
-              "location": "<region>",
-              "runOutputName": "<runOutputName>",
+              "galleryimageId": "/subscriptions/bfdcbedf-2c60-4db1-a2a7-e84555bd0af1/resourceGroups/AIBWin10/providers/Microsoft.Compute/galleries/LOSCImageGalleryAIB/images/Win10Multi",
+              "location": "northeurope",
+              "runOutputName": "winSvrSigR01",
               "artifactTags": {
                 "source": "azVmImageBuilder",
                 "baseosimg": "windows10Multi"
@@ -133,3 +147,12 @@
     ]
   }
   
+
+
+
+
+
+
+
+
+
